@@ -1,13 +1,37 @@
 STOP_WORDS = [
     'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he',
     'i', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'were',
-    'will', 'with'
+    'will', 'with', 'a'
 ]
 
 
 def print_word_freq(file):
     """Read in `file` and print out the frequency of words in that file."""
-    pass
+    with open(file) as my_file:
+        my_file = my_file.read()
+        my_file = clean_text(my_file)
+    print(my_file)
+
+def clean_text(text):
+    """removes puncuation from text"""
+    text = text.replace(",", "").replace(".", "").replace("!", "")
+    
+    #lowercase
+    text = text.lower()
+    text = text.split()
+    print (text)
+
+    for word in text:
+        if word in STOP_WORDS:
+            text.remove(word)
+        
+    return text
+
+
+    
+    
+    
+    
 
 
 if __name__ == "__main__":
